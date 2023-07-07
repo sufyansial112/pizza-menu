@@ -3,6 +3,7 @@ import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 // react before v18
 // import ReactDOM from "react-dom";
+import "./index.css";
 
 const pizzaData = [
   {
@@ -51,24 +52,68 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
-      <h1>Hello React! Whats UP</h1>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
+}
+function Header() {
+  return (
+    <header className="header">
+      <h1> Fast React Pizza Co.</h1>
+    </header>
+  );
+}
+function Menu() {
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <Pizza
+        name="pizza Spinachi"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={10}
+      />
+      <Pizza
+        name="pizza Funghi"
+        ingredients="Tomato, mozarella, mushrooms, and onion"
+        photoName="pizzas/funghi.jpg"
+        price={13}
+      />
+    </main>
+  );
+}
+
+function Pizza(props) {
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.photoName}></img>
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price}</span>
+      </div>
     </div>
   );
 }
 
-function Pizza() {
+function Footer() {
+  // const hours = new Date().getHours();
+  // const openHour = 12;
+  // const closeHour = 24;
+  // console.log(hours);
+  // if (hours >= openHour && hours <= closeHour) alert("We're currently open");
+  // else alert("Sorry, we're closed");
+
   return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci"></img>
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
+    <footer className="footer">
+      {new Date().toLocaleDateString()}.We're currently open
+    </footer>
   );
 }
+
 // react v18
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
